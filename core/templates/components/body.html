@@ -1,0 +1,73 @@
+{% block body %}
+<div class="div-body p-2">
+    <div class="container-fluid h-100 d-flex align-items-center">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+
+                {% if not request.user.is_staff %}
+                <img src="https://img.freepik.com/vector-gratis/trabajadores-logisticos-cargando-cajas-cargadores_74855-6541.jpg?w=740&t=st=1666028193~exp=1666028793~hmac=4e39dd857519da7ffc0f70924b7efeee8819f33fe90ccd4e44dfeee3cedbb0de"
+                    class="img-fluid " alt="Sample image" width="700">
+                {% else %}
+                <img src="https://st4.depositphotos.com/1001599/21934/v/600/depositphotos_219346674-stock-illustration-system-administrator-working-on-laptop.jpg"
+                    class="img-fluid " alt="Sample image" width="1000">
+                {% endif %}
+
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <div class="text-center">
+                    <h1><strong>
+                            {% if not request.user.is_staff %}
+                            Botilleria LaPilar
+                            {% else %}
+                            <h3><strong>Bienvenido</strong></h3>
+                            {% endif %}
+                        </strong></h1>
+                    <h5>
+                        {% if not request.user.is_staff %}
+                        Sistema de bodega
+                        {% else %}
+                        <i class="fa-solid fa-user-gear text-primary"></i> {{ user.nombre }} {{ user.apellido }} <i class="fa-solid fa-circle-check text-success"></i> {{ user.cargo }}
+                        {% endif %}
+                    </h5>
+
+                    <p>
+                        {% if not request.user.is_staff %}
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi itaque, repudiandae accusamus
+                        rerum pariatur vero aut expedita quasi culpa deleniti vel libero voluptatem praesentium tempore
+                        unde enim fugit consequatur eos.
+                        {% else %}
+                        <h5><i> Al panel de Administración</i></h5>
+
+                        {% endif %}
+
+                    </p>
+
+                    <div class="d-flex justify-content-center p-2">
+                        {% if not request.user.is_staff %}
+                        <a href="{% url 'login' %}" class="btn btn-primary ">Iniciar Sesión</a>
+                        {% else %}
+                        <div class="dropdown">
+                            <button class="btn btn-outline-success dropdown-toggle" type="button"
+                                id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                Acceso rápido <i class="fa-solid fa-circle-chevron-down"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                <li><a class="dropdown-item active" href="{% url 'usuario:crear_usuarios' %}">Registrar empleado</a></li>
+                                <li><a class="dropdown-item" href="#">Registrar proveedor</a></li>
+                                <li><a class="dropdown-item" href="#">Registrar producto</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Bodega</a></li>
+                            </ul>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
