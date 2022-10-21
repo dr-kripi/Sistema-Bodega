@@ -33,7 +33,7 @@
                         <td><strong>{{usuario.cargo}}</strong></td>
 
                         {% endif %}
-
+                        <td><a href="{% url 'proveedor:eliminar_usuarios' %}">elimar</a></td>
                         {% endfor %}
 
                 </tbody>
@@ -45,7 +45,7 @@
 {% include 'components/paginacion.html' %}
 {% endblock paginacion %}
 {% else %}
-<h1><strong><b>No existen usuarios registrados</b></strong></h1>
+<h1><strong><b>No existen proveedores registrados</b></strong></h1>
 {% endif %}
 
 {% endblock body %}

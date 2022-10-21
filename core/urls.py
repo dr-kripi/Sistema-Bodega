@@ -14,8 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path,include, re_path
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.views.static import serve
+
+
 
 from apps.usuario.views import Index, Login, logoutUsuario
 urlpatterns = [
@@ -23,10 +27,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('usuarios/',include(('apps.usuario.urls', 'usuario'))),    
     path('proveedores/',include(('apps.proveedor.urls', 'proveedor'))),    
-    
-    #path('producto/',include('apps.producto.urls')),    
-
     path('login/',Login.as_view(), name='login'),
     path('logout/',login_required(logoutUsuario), name='logout'),
-
 ]
+
+#Configuracion creacion de rutas para imagenes de los modelos
+urlpatterns += [
+    re_path(r'^media/(?P<path>.*)$', serve,{
+        'document_root': settings.MEDIA_ROOT,
+    }
+)]

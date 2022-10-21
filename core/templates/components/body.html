@@ -1,14 +1,16 @@
+{% load static %}
 {% block body %}
+
 <div class="div-body p-2">
     <div class="container-fluid h-100 d-flex align-items-center">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-9 col-lg-6 col-xl-5">
 
                 {% if not request.user.is_staff %}
-                <img src="https://img.freepik.com/vector-gratis/trabajadores-logisticos-cargando-cajas-cargadores_74855-6541.jpg?w=740&t=st=1666028193~exp=1666028793~hmac=4e39dd857519da7ffc0f70924b7efeee8819f33fe90ccd4e44dfeee3cedbb0de"
+                <img src="{% static 'img/index-no-autenticado.webp' %}"
                     class="img-fluid " alt="Sample image" width="700">
                 {% else %}
-                <img src="https://st4.depositphotos.com/1001599/21934/v/600/depositphotos_219346674-stock-illustration-system-administrator-working-on-laptop.jpg"
+                <img src="{% static 'img/admin-index.jpg' %}"
                     class="img-fluid " alt="Sample image" width="1000">
                 {% endif %}
 
